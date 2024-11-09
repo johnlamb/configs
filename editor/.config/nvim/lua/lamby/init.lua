@@ -37,6 +37,6 @@ autocmd('LspAttach', {
         vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
     end
 })
-
+require("luasnip.loaders.from_vscode").lazy_load()
 vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
