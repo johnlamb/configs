@@ -30,6 +30,7 @@ return {
                 "ruff",
                 "pyright",
                 "lua_ls",
+                "zls"
             },
             handlers = {
                 function(server_name) -- default handler (optional)
@@ -37,7 +38,22 @@ return {
                         capabilities = capabilities
                     }
                 end,
+                zls = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.zls.setup({
+                        root_dir = lspconfig.util.root_pattern(".git", "build.zig", "zls.json"),
+                        settings = {
+                            zls = {
+                                enable_inlay_hints = true,
+                                enable_snippets = true,
+                                warn_style = true,
+                            },
+                        },
+                    })
+                    vim.g.zig_fmt_parse_errors = 0
+                    vim.g.zig_fmt_autosave = 0
 
+                end,
                 ["ruff"] = function()
                     local lspconfig = require("lspconfig")
                     local on_attach = function(client, bufnr)
