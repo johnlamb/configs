@@ -20,6 +20,7 @@ return {
 
     config = function()
         local luasnip = require("luasnip")
+        local cmp_autopairs = require('nvim-autopairs.completion.cmp')
         local cmp = require('cmp')
         local cmp_lsp = require("cmp_nvim_lsp")
         local capabilities = vim.tbl_deep_extend(
@@ -161,6 +162,10 @@ return {
                 { name = 'buffer' },
             })
         })
+        cmp.event:on(
+          'confirm_done',
+          cmp_autopairs.on_confirm_done()
+        )
 
         -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
        cmp.setup.cmdline({ '/', '?' }, {
