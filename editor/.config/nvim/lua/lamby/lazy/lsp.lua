@@ -14,8 +14,11 @@ return {
         },
 
         -- For snipping
-        "L3MON4D3/LuaSnip",
-        "saadparwaiz1/cmp_luasnip",
+        {
+            "L3MON4D3/LuaSnip",
+            update_events = 'TextChanged,TextChangedI',
+            "saadparwaiz1/cmp_luasnip",
+        }
     },
 
     config = function()

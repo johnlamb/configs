@@ -12,7 +12,7 @@ return {
             defaults = {
                 mappings = {
                   i = {
-                    ["<C-h>"] = "which_key"
+                    ["<C-y>"] = "which_key"
                   }
                 }
               },

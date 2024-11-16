@@ -40,6 +40,11 @@ vim.keymap.set("i", "<C-l>", function()
   vim.cmd("stopinsert")
   vim.api.nvim_feedkeys("Ea", "n", true)
 end)
+
+vim.keymap.set("c", "<cr>", function()
+  if vim.fn.pumvisible() == 1 then return '<c-y>' end
+  return '<cr>'
+  end, { expr = true })
 -- 
 -- vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 -- vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
