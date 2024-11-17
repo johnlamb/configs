@@ -60,7 +60,6 @@ return {
                     })
                     vim.g.zig_fmt_parse_errors = 0
                     vim.g.zig_fmt_autosave = 0
-
                 end,
                 ["ruff"] = function()
                     local lspconfig = require("lspconfig")
@@ -78,14 +77,14 @@ return {
                         capabilities = capabilities,
                         settings = {
                             pyright = {
-                              -- Using Ruff's import organizer
-                              disableOrganizeImports = true,
+                                -- Using Ruff's import organizer
+                                disableOrganizeImports = true,
                             },
                             python = {
-                              analysis = {
-                                -- Ignore all files for analysis to exclusively use Ruff for linting
-                                ignore = { '*' },
-                              },
+                                analysis = {
+                                    -- Ignore all files for analysis to exclusively use Ruff for linting
+                                    ignore = { '*' },
+                                },
                             },
                         }
                     }
@@ -96,7 +95,7 @@ return {
                         settings = {
                             Lua = {
                                 diagnostics = {
-                                    globals = {'vim'},
+                                    globals = { 'vim' },
                                 }
                             }
                         }
@@ -113,7 +112,7 @@ return {
                     require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
                 end,
             },
-            completion = { completeopt = 'menuone,noinsert,preview'},
+            completion = { completeopt = 'menuone,noinsert,preview' },
             window = {
                 completion = cmp.config.window.bordered(),
                 documentation = cmp.config.window.bordered(),
@@ -139,23 +138,23 @@ return {
                 end),
 
                 ["<Tab>"] = cmp.mapping(function(fallback)
-                  if cmp.visible() then
-                    cmp.select_next_item()
-                  elseif luasnip.locally_jumpable(1) then
-                    luasnip.jump(1)
-                  else
-                    fallback()
-                  end
+                    if cmp.visible() then
+                        cmp.select_next_item()
+                    elseif luasnip.locally_jumpable(1) then
+                        luasnip.jump(1)
+                    else
+                        fallback()
+                    end
                 end, { "i", "s" }),
 
                 ["<S-Tab>"] = cmp.mapping(function(fallback)
-                  if cmp.visible() then
-                    cmp.select_prev_item()
-                  elseif luasnip.locally_jumpable(-1) then
-                    luasnip.jump(-1)
-                  else
-                    fallback()
-                  end
+                    if cmp.visible() then
+                        cmp.select_prev_item()
+                    elseif luasnip.locally_jumpable(-1) then
+                        luasnip.jump(-1)
+                    else
+                        fallback()
+                    end
                 end, { "i", "s" }),
             }),
             sources = cmp.config.sources({
@@ -166,28 +165,28 @@ return {
             })
         })
         cmp.event:on(
-          'confirm_done',
-          cmp_autopairs.on_confirm_done()
+            'confirm_done',
+            cmp_autopairs.on_confirm_done()
         )
 
         -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
-       cmp.setup.cmdline({ '/', '?' }, {
-         mapping = cmp.mapping.preset.cmdline(),
-         sources = {
-           { name = 'buffer' }
-         }
-       })
+        cmp.setup.cmdline({ '/', '?' }, {
+            mapping = cmp.mapping.preset.cmdline(),
+            sources = {
+                { name = 'buffer' }
+            }
+        })
 
-       -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-       cmp.setup.cmdline(':', {
-         mapping = cmp.mapping.preset.cmdline(),
-         sources = cmp.config.sources({
-           { name = 'path' }
-         }, {
-           { name = 'cmdline' }
-         }),
-         matching = { disallow_symbol_nonprefix_matching = false }
-       })
+        -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+        cmp.setup.cmdline(':', {
+            mapping = cmp.mapping.preset.cmdline(),
+            sources = cmp.config.sources({
+                { name = 'path' }
+            }, {
+                { name = 'cmdline' }
+            }),
+            matching = { disallow_symbol_nonprefix_matching = false }
+        })
         vim.diagnostic.config({
             -- update_in_insert = true,
             float = {
