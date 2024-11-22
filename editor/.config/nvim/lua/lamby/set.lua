@@ -7,10 +7,10 @@ vim.o.foldmethod = 'manual'
 vim.o.foldlevelstart = 99
 
 -- Set numbers and scrollof
-vim.wo.number = true
-vim.wo.relativenumber = true
-vim.wo.signcolumn = 'yes'
-vim.wo.scrolloff = 10
+vim.o.number = true
+vim.o.relativenumber = true
+vim.o.signcolumn = 'yes'
+vim.o.scrolloff = 10
 
 -- Access to system clipboard
 vim.o.clipboard = 'unnamedplus'
