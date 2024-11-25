@@ -29,7 +29,7 @@ vim.o.updatetime = 50
 -- in completion, when there is more than one match,
 -- list all matches, and only complete to longest common match
 vim.o.wildmode = 'list:longest'
-vim.o.completeopt = 'menuone,noinsert,preview'
+vim.o.completeopt = 'menuone,preview'
 vim.o.termguicolors = true
 
 -- Split in more logical way
@@ -41,8 +41,7 @@ vim.o.splitbelow = true
 vim.o.undofile = true
 -- when opening a file with a command (like :e),
 -- don't suggest files like there:
-vim.o.wildignore = 
-    '.hg,.svn,*~,*.png,*.jpg,*.gif,*.min.js,*.swp,*.o,vendor,dist,_site'
+vim.o.wildignore = '.hg,.svn,*~,*.png,*.jpg,*.gif,*.min.js,*.swp,*.o,vendor,dist,_site'
 
 -- tabs
 vim.o.shiftwidth = 4
