@@ -2,9 +2,11 @@
 -- Preferences --
 -----------------
 -- No folding
-vim.o.foldenable = false
-vim.o.foldmethod = 'manual'
+vim.o.foldenable = true
+vim.o.foldmethod = 'expr'
+vim.o.foldexpr = "v:lua.vim.lsp.foldexpr()"
 vim.o.foldlevelstart = 99
+
 
 -- Set numbers and scrollof
 vim.o.number = true
