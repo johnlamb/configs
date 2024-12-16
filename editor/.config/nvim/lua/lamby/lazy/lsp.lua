@@ -145,7 +145,8 @@ return {
                 "ruff",
                 "pyright",
                 "lua_ls",
-                "zls"
+                "zls",
+                "ols"
             },
             handlers = {
                 function(server_name) -- default handler (optional)
@@ -167,6 +168,13 @@ return {
                     })
                     vim.g.zig_fmt_parse_errors = 0
                     vim.g.zig_fmt_autosave = 0
+                end,
+                ["ols"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.ols.setup({
+                        filetypes = {'odin'},
+                        root_dir = lspconfig.util.root_pattern(".git", "ols.json", "*.odin"),
+                    })
                 end,
                 ["ruff"] = function()
                     local lspconfig = require("lspconfig")
