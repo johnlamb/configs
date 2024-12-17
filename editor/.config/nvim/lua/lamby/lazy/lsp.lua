@@ -172,6 +172,9 @@ return {
                 ["ols"] = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.ols.setup({
+                        init_options = {
+                            checker_args = "-vet"
+                        },
                         filetypes = {'odin'},
                         root_dir = lspconfig.util.root_pattern(".git", "ols.json", "*.odin"),
                     })
