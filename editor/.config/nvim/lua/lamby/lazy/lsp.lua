@@ -146,7 +146,8 @@ return {
                 "pyright",
                 "lua_ls",
                 "zls",
-                "ols"
+                "ols",
+                "ocamllsp"
             },
             handlers = {
                 function(server_name) -- default handler (optional)
@@ -218,7 +219,13 @@ return {
                             }
                         }
                     }
+                end,
+                ["ocamllsp"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.ocamllsp.setup {
+                    }
                 end
+
             }
         })
     end
