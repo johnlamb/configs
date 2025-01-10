@@ -4,139 +4,9 @@ return {
         -- Basic functionality
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
-        "hrsh7th/cmp-nvim-lsp",
-        "hrsh7th/cmp-buffer",
-        "hrsh7th/cmp-path",
-        "hrsh7th/cmp-cmdline",
-        {
-            "hrsh7th/nvim-cmp",
-            event = { "InsertEnter", "CmdlineEnter" },
-        },
-
-        -- For snipping
-        {
-            "L3MON4D3/LuaSnip",
-            update_events = 'TextChanged,TextChangedI',
-            "saadparwaiz1/cmp_luasnip",
-        }
     },
 
     config = function()
-        local luasnip = require("luasnip")
-        local cmp_autopairs = require('nvim-autopairs.completion.cmp')
-        local cmp = require('cmp')
-        local cmp_lsp = require("cmp_nvim_lsp")
-        local capabilities = vim.tbl_deep_extend(
-            "force",
-            {},
-            vim.lsp.protocol.make_client_capabilities(),
-            cmp_lsp.default_capabilities())
-
-        local cmp_select = { behavior = cmp.SelectBehavior.Select }
-
-        cmp.setup({
-            snippet = {
-                expand = function(args)
-                    require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-                end,
-            },
-            completion = { completeopt = 'menuone,preview' },
-            window = {
-                completion = cmp.config.window.bordered(),
-                documentation = cmp.config.window.bordered(),
-            },
-            mapping = cmp.mapping.preset.insert({
-                ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-                ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-                ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-                ["<C-Space>"] = cmp.mapping.complete(),
-
-                -- ["<CR>"] = cmp.mapping({
-                --     i = function(fallback)
-                --         if cmp.visible() and cmp.get_active_entry() then
-                --             cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
-                --         else
-                --             fallback()
-                --         end
-                --     end,
-                --     s = cmp.mapping.confirm({ select = true }),
-                --     c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
-                -- }),
-                ['<CR>'] = cmp.mapping(function(fallback)
-                    if cmp.visible() then
-                        if luasnip.expandable() then
-                            luasnip.expand()
-                        else
-                            cmp.confirm({
-                                select = true,
-                            })
-                        end
-                    else
-                        fallback()
-                    end
-                end),
-
-                ["<Tab>"] = cmp.mapping(function(fallback)
-                    -- if cmp.visible() then
-                    --     cmp.select_next_item()
-                    if luasnip.locally_jumpable(1) then
-                        luasnip.jump(1)
-                    else
-                        fallback()
-                    end
-                end, { "i", "s" }),
-
-                ["<S-Tab>"] = cmp.mapping(function(fallback)
-                    -- if cmp.visible() then
-                    --     cmp.select_prev_item()
-                    if luasnip.locally_jumpable(-1) then
-                        luasnip.jump(-1)
-                    else
-                        fallback()
-                    end
-                end, { "i", "s" }),
-            }),
-            sources = cmp.config.sources({
-                { name = 'nvim_lsp' },
-                { name = 'luasnip' }, -- For luasnip users.
-            }, {
-                { name = 'buffer' },
-            })
-        })
-        cmp.event:on(
-            'confirm_done',
-            cmp_autopairs.on_confirm_done()
-        )
-
-        -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
-        cmp.setup.cmdline({ '/', '?' }, {
-            mapping = cmp.mapping.preset.cmdline(),
-            sources = {
-                { name = 'buffer' }
-            }
-        })
-
-        -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-        cmp.setup.cmdline(':', {
-            mapping = cmp.mapping.preset.cmdline(),
-            sources = cmp.config.sources({
-                { name = 'path' }
-            }, {
-                { name = 'cmdline' }
-            }),
-            matching = { disallow_symbol_nonprefix_matching = false }
-        })
-        vim.diagnostic.config({
-            -- update_in_insert = true,
-            float = {
-                focusable = false,
-                style = "minimal",
-                border = "rounded",
-                source = "always",
-                header = "",
-                prefix = "",
-            },
-        })
 
         -- Setup LSPs
         require("mason").setup()
@@ -152,9 +22,9 @@ return {
             handlers = {
                 function(server_name) -- default handler (optional)
                     require("lspconfig")[server_name].setup {
-                        capabilities = capabilities
                     }
                 end,
+
                 zls = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.zls.setup({
@@ -170,6 +40,7 @@ return {
                     vim.g.zig_fmt_parse_errors = 0
                     vim.g.zig_fmt_autosave = 0
                 end,
+
                 ["ols"] = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.ols.setup({
@@ -180,6 +51,7 @@ return {
                         root_dir = lspconfig.util.root_pattern(".git", "ols.json", "*.odin"),
                     })
                 end,
+
                 ["ruff"] = function()
                     local lspconfig = require("lspconfig")
                     local on_attach = function(client, bufnr)
@@ -190,6 +62,7 @@ return {
                         on_attach = on_attach,
                     })
                 end,
+
                 ["pyright"] = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.pyright.setup {
@@ -208,6 +81,7 @@ return {
                         }
                     }
                 end,
+
                 ["lua_ls"] = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.lua_ls.setup {
@@ -220,6 +94,7 @@ return {
                         }
                     }
                 end,
+
                 ["ocamllsp"] = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.ocamllsp.setup {

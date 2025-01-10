@@ -22,12 +22,11 @@ autocmd('TextYankPost', {
     end,
 })
 
-local builtin = require('telescope.builtin')
 autocmd('LspAttach', {
     callback = function(e)
         local opts = { buffer = e.buf }
-        vim.keymap.set("n", "gd", function() builtin.lsp_definitions() end, opts)
-        -- vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
+        -- vim.keymap.set("n", "gd", function() builtin.lsp_definitions() end, opts)
+        vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
         vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
         vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
         vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
@@ -40,8 +39,8 @@ autocmd('LspAttach', {
         vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
     end
 })
-require("luasnip").setup({
-    update_events = "TextChangedI"
-})
+-- require("luasnip").setup({
+--     update_events = "TextChangedI"
+-- })
 vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
