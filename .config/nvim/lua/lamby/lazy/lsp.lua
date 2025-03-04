@@ -99,6 +99,11 @@ return {
                     local lspconfig = require("lspconfig")
                     lspconfig.ocamllsp.setup {
                     }
+                end,
+                ["clangd"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.clangd.setup {
+                    }
                 end
 
             }
