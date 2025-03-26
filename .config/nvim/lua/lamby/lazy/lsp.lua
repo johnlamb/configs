@@ -17,7 +17,8 @@ return {
                 "lua_ls",
                 "zls",
                 "ols",
-                "ocamllsp"
+                "ocamllsp",
+                "clangd"
             },
             handlers = {
                 function(server_name) -- default handler (optional)
