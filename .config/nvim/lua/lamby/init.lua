@@ -7,6 +7,11 @@ require("lamby.floatingterminal")
 vim.o.background = "dark"
 vim.cmd([[colorscheme gruvbox]])
 
+-- Turn of semantic highlighting
+for _, group in ipairs(vim.fn.getcompletion("@lsp", "highlight")) do
+  vim.api.nvim_set_hl(0, group, {})
+end
+
 local augroup = vim.api.nvim_create_augroup
 local yank_group = augroup('HighlightYank', {})
 

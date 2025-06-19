@@ -13,7 +13,8 @@ return {
         require("mason-lspconfig").setup({
             ensure_installed = {
                 "lua_ls",
-                "clangd"
+                "clangd",
+                "pyright"
             },
             handlers = {
                 function(server_name) -- default handler (optional)
