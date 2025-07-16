@@ -1,12 +1,27 @@
 CompileFlags:
   Add:
   # - -I/opt/homebrew/Cellar/gcc/15.1.0/bin/../lib/gcc/current/gcc/aarch64-apple-darwin24/15/../../../../../../include/c++/15
-  - -I/opt/homebrew/Cellar/gcc/15.1.0/bin/../lib/gcc/current/gcc/aarch64-apple-darwin24/15/../../../../../../include/c++/15/aarch64-apple-darwin24
+  # - -I/opt/homebrew/Cellar/gcc/15.1.0/bin/../lib/gcc/current/gcc/aarch64-apple-darwin24/15/../../../../../../include/c++/15/aarch64-apple-darwin24
   # - -I/opt/homebrew/Cellar/gcc/15.1.0/bin/../lib/gcc/current/gcc/aarch64-apple-darwin24/15/../../../../../../include/c++/15/backward
   # - -I/opt/homebrew/Cellar/gcc/15.1.0/bin/../lib/gcc/current/gcc/aarch64-apple-darwin24/15/include
   # - -I/opt/homebrew/Cellar/gcc/15.1.0/bin/../lib/gcc/current/gcc/aarch64-apple-darwin24/15/include-fixed
-  - -I/Library/Developer/CommandLineTools/SDKs/MacOSX15.sdk/usr/include
-  - -I/Library/Developer/CommandLineTools/SDKs/MacOSX15.sdk/System/Library/Frameworks
+  # - -I/Library/Developer/CommandLineTools/SDKs/MacOSX15.sdk/usr/include
+  # - -I/Library/Developer/CommandLineTools/SDKs/MacOSX15.sdk/System/Library/Frameworks
   - -Wall
+  - -Werror
   - -Wextra
-  - -std=c++23
+  - -std=c++20
+  # - -fimplicit-modules
+  # - -fimplicit-module-maps
+  # - -fbuiltin-module-map
+  #- -L/opt/homebrew/opt/llvm/lib/unwind -lunwind
+  # - -L/opt/homebrew/opt/llvm/lib/c++
+  # - -L/opt/homebrew/opt/llvm/lib/unwind -lunwind
+  # - -fmodules
+  # - -fcxx-modules
+  # - -nostdinc++
+  # - -isystem ~/libcxx-modules-install/include/c++/v1
+  # - -stdlib=libc++
+  # - -L ~/libcxx-modules-install/lib
+  # - -Wl,-rpath,~/libcxx-modules-install/lib
+  #- --experimental-modules-support

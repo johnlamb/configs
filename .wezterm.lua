@@ -9,7 +9,7 @@ if wezterm.config_builder then
 end
 
 config.color_scheme = 'GruvboxDark'
-config.font = wezterm.font 'FiraCode Nerd Font Mono'
+config.font = wezterm.font 'JetBrains Mono'
 config.font_size = 13
 config.hide_tab_bar_if_only_one_tab = true
 config.tab_bar_at_bottom = true

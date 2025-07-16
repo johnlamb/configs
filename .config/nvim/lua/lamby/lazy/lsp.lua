@@ -9,7 +9,7 @@ return {
     config = function()
 
         -- Setup LSPs
-        require("mason").setup()
+        require("mason").setup({ PATH="append"})
         require("mason-lspconfig").setup({
             ensure_installed = {
                 "lua_ls",
