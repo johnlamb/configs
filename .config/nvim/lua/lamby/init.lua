@@ -3,6 +3,15 @@ require("lamby.remap")
 require("lamby.lazy_init")
 require("lamby.floatingterminal")
 
+-- Rust
+local lspconfig = require'lspconfig'
+
+lspconfig.rust_analyzer.setup({
+    on_attach = function(client, bufnr)
+        vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+    end
+})
+
 -- Gruvbox colorscheme
 vim.o.background = "dark"
 vim.cmd([[colorscheme gruvbox]])

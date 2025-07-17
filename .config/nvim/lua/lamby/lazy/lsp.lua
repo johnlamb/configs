@@ -5,7 +5,6 @@ return {
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
     },
-
     config = function()
 
         -- Setup LSPs
@@ -58,8 +57,7 @@ return {
                     local lspconfig = require("lspconfig")
                     lspconfig.clangd.setup {
                     }
-                end
-
+                end,
             }
         })
     end
